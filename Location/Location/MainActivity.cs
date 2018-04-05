@@ -17,25 +17,30 @@ namespace Location
 		LocationManager locMgr;
 		string tag = "MainActivity";
 		Button button;
-		TextView latitude;
-		TextView longitude;
-		TextView provider;
+		TextView tvLatitude;
+		TextView tvLongitude;
+		TextView tvProvider;
+        TextView tvDistance;
+        LatLng lastLatLng = new LatLng();
+        LatLng actLatLng = new LatLng();
+        double? distance = null;
 
 
-		protected override void OnCreate(Bundle bundle)
+        protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
 			Log.Debug(tag, "----- OnCreate called");
 
-			// Set our view from the "main" layout resource
+			// Set our view from the "Main.axml" layout resource
 			SetContentView(Resource.Layout.Main);
 			button = FindViewById<Button> (Resource.Id.myButton);
-			latitude = FindViewById<TextView> (Resource.Id.latitude);
-			longitude = FindViewById<TextView> (Resource.Id.longitude);
-			provider = FindViewById<TextView> (Resource.Id.provider);
-		}
+            tvLatitude = FindViewById<TextView> (Resource.Id.latitude);
+            tvLongitude = FindViewById<TextView> (Resource.Id.longitude);
+            tvProvider = FindViewById<TextView> (Resource.Id.provider);
+            tvDistance = FindViewById<TextView>(Resource.Id.distance);
+        }
 
-		protected override void OnStart()
+        protected override void OnStart()
 		{
 			base.OnStart();
 			Log.Debug(tag, "----- OnStart called");
@@ -129,15 +134,32 @@ namespace Location
 		///<remarks>Implements ILocationListener interface.</remarks>
 		public void OnLocationChanged(Android.Locations.Location location)
 		{
-			Log.Debug(tag, "----- Location changed");
-			latitude.Text = "Latitude: " + location.Latitude.ToString();
-			longitude.Text = "Longitude: " + location.Longitude.ToString();
-			provider.Text = "Provider: " + location.Provider.ToString();
-		}
+            tvLatitude.Text = "Latitude: " + location.Latitude.ToString();
+            tvLongitude.Text = "Longitude: " + location.Longitude.ToString();
+            tvProvider.Text = "Provider: " + location.Provider.ToString();
 
-	    ///<summary>Called when the provider is disabled by the user.</summary>
-		///<remarks>Implements ILocationListener interface.</remarks>
-		public void OnProviderDisabled(string provider)
+            if (!distance.HasValue)
+            {
+                Log.Debug(tag, "----- Location initialized");
+                lastLatLng.Latitude = location.Latitude;
+                lastLatLng.Longitude = location.Longitude;
+                distance = 0.0;
+            }
+            else
+            {
+                Log.Debug(tag, "----- Location changed");
+                actLatLng.Latitude = location.Latitude;
+                actLatLng.Longitude = location.Longitude;
+                distance += Utils.HaversineDistance(lastLatLng, actLatLng, Utils.DistanceUnit.Kilometers);
+                lastLatLng.Latitude = actLatLng.Latitude;
+                lastLatLng.Longitude = actLatLng.Longitude;
+                tvDistance.Text = "Distance: " + distance.ToString() + " Km";
+            }
+        }
+
+        ///<summary>Called when the provider is disabled by the user.</summary>
+        ///<remarks>Implements ILocationListener interface.</remarks>
+        public void OnProviderDisabled(string provider)
 		{
 			Log.Debug(tag, "----- " + provider + " disabled by user");
 		}
