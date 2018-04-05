@@ -10,9 +10,8 @@ using Android.Util;
 
 namespace Location
 {
+	///<summary>Implement ILocationListener interface to get location updates</summary>
 	[Activity (Label = "Location", MainLauncher = true)]
-
-	//Implement ILocationListener interface to get location updates
 	public class MainActivity : Activity, ILocationListener
 	{
 		LocationManager locMgr;
@@ -23,51 +22,59 @@ namespace Location
 		TextView provider;
 
 
-		protected override void OnCreate (Bundle bundle)
+		protected override void OnCreate(Bundle bundle)
 		{
-			base.OnCreate (bundle);
-			Log.Debug (tag, "OnCreate called");
+			base.OnCreate(bundle);
+			Log.Debug(tag, "----- OnCreate called");
 
 			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Main);
+			SetContentView(Resource.Layout.Main);
 			button = FindViewById<Button> (Resource.Id.myButton);
 			latitude = FindViewById<TextView> (Resource.Id.latitude);
 			longitude = FindViewById<TextView> (Resource.Id.longitude);
 			provider = FindViewById<TextView> (Resource.Id.provider);
 		}
 
-		protected override void OnStart ()
+		protected override void OnStart()
 		{
-			base.OnStart ();
-			Log.Debug (tag, "OnStart called");
+			base.OnStart();
+			Log.Debug(tag, "----- OnStart called");
 		}
 
 		// OnResume gets called every time the activity starts, so we'll put our RequestLocationUpdates
 		// code here, so that 
-		protected override void OnResume ()
+	    ///<summary></summary>
+		protected override void OnResume()
 		{
-			base.OnResume (); 
-			Log.Debug (tag, "OnResume called");
+			base.OnResume(); 
+			Log.Debug(tag, "----- OnResume called");
 
 			// initialize location manager
-			locMgr = GetSystemService (Context.LocationService) as LocationManager;
+			locMgr = GetSystemService(Context.LocationService) as LocationManager;
+            if (locMgr.AllProviders.Contains(LocationManager.GpsProvider))
+                Log.Debug(tag, "----- GpsProvider available");
+            if (locMgr.AllProviders.Contains(LocationManager.NetworkProvider))
+                Log.Debug(tag, "----- NetworkProvider available");
+            if (locMgr.AllProviders.Contains(LocationManager.PassiveProvider))
+                Log.Debug(tag, "----- PassiveProvider available");
 
-			button.Click += delegate {
+
+            button.Click += delegate {
 				button.Text = "Location Service Running";
 
                 // pass in the provider (GPS), 
                 // the minimum time between updates (in seconds), 
                 // the minimum distance the user needs to move to generate an update (in meters),
                 // and an ILocationListener (recall that this class impletents the ILocationListener interface)
-                if (locMgr.AllProviders.Contains(LocationManager.NetworkProvider)
-                    && locMgr.IsProviderEnabled(LocationManager.NetworkProvider))
-                {
-                    locMgr.RequestLocationUpdates(LocationManager.NetworkProvider, 2000, 1, this);
-                }
-                else
-                {
-                    Toast.MakeText(this, "The network provider does not exist or is not enabled!", ToastLength.Long).Show();
-                }
+                //if (locMgr.AllProviders.Contains(LocationManager.NetworkProvider)
+                //    && locMgr.IsProviderEnabled(LocationManager.NetworkProvider))
+                //{
+                //    locMgr.RequestLocationUpdates(LocationManager.NetworkProvider, 2000, 1, this);
+                //}
+                //else
+                //{
+                //    Toast.MakeText(this, "The network provider does not exist or is not enabled!", ToastLength.Long).Show();
+                //}
 
 
                 // Comment the line above, and uncomment the following, to test 
@@ -83,12 +90,24 @@ namespace Location
 
                 //Log.Debug(tag, "Starting location updates with " + locationProvider.ToString());
                 //locMgr.RequestLocationUpdates(locationProvider, 2000, 1, this);
+
+
+                // Requestes GPS provider for updates every min 2000ms & min 1m
+                if (locMgr.AllProviders.Contains(LocationManager.GpsProvider)
+                    && locMgr.IsProviderEnabled(LocationManager.GpsProvider))
+                {
+                    locMgr.RequestLocationUpdates(LocationManager.GpsProvider, 2000, 1, this);
+                }
+                else
+                {
+                    Toast.MakeText(this, "The GPS provider does not exist or is not enabled!", ToastLength.Long).Show();
+                }
             };
 		}
 
-		protected override void OnPause ()
+		protected override void OnPause()
 		{
-			base.OnPause ();
+			base.OnPause();
 
 			// stop sending location updates when the application goes into the background
 			// to learn about updating location in the background, refer to the Backgrounding guide
@@ -96,37 +115,45 @@ namespace Location
 
 
 			// RemoveUpdates takes a pending intent - here, we pass the current Activity
-			locMgr.RemoveUpdates (this);
-			Log.Debug (tag, "Location updates paused because application is entering the background");
+			locMgr.RemoveUpdates(this);
+			Log.Debug(tag, "----- Location updates paused because application is entering the background");
 		}
 
-		protected override void OnStop ()
+		protected override void OnStop()
 		{
-			base.OnStop ();
-			Log.Debug (tag, "OnStop called");
+			base.OnStop();
+			Log.Debug(tag, "----- OnStop called");
 		}
 
-		public void OnLocationChanged (Android.Locations.Location location)
+	    ///<summary>Called when the location has changed.</summary>
+		///<remarks>Implements ILocationListener interface.</remarks>
+		public void OnLocationChanged(Android.Locations.Location location)
 		{
-			Log.Debug (tag, "Location changed");
+			Log.Debug(tag, "----- Location changed");
 			latitude.Text = "Latitude: " + location.Latitude.ToString();
 			longitude.Text = "Longitude: " + location.Longitude.ToString();
 			provider.Text = "Provider: " + location.Provider.ToString();
 		}
 
-		public void OnProviderDisabled (string provider)
+	    ///<summary>Called when the provider is disabled by the user.</summary>
+		///<remarks>Implements ILocationListener interface.</remarks>
+		public void OnProviderDisabled(string provider)
 		{
-			Log.Debug (tag, provider + " disabled by user");
+			Log.Debug(tag, "----- " + provider + " disabled by user");
 		}
 
-		public void OnProviderEnabled (string provider)
+	    ///<summary>Called when the provider is enabled by the user.</summary>
+		///<remarks>Implements ILocationListener interface.</remarks>
+		public void OnProviderEnabled(string provider)
 		{
-			Log.Debug (tag, provider + " enabled by user");
+			Log.Debug(tag, "----- " + provider + " enabled by user");
 		}
 
-		public void OnStatusChanged (string provider, Availability status, Bundle extras)
+	    ///<summary>Called when the provider status changes.</summary>
+		///<remarks>Implements ILocationListener interface.</remarks>
+		public void OnStatusChanged(string provider, Availability status, Bundle extras)
 		{
-			Log.Debug (tag, provider + " availability has changed to " + status.ToString());
+			Log.Debug(tag, "----- " + provider + " availability has changed to " + status.ToString());
 		}
 	}
 }
