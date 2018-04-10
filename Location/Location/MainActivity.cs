@@ -21,8 +21,11 @@ namespace Location
 		TextView tvLongitude;
 		TextView tvProvider;
         TextView tvDistance;
+        /// <summary>Stores GPS coordinates of last location update.</summary>
         LatLng lastLatLng = new LatLng();
+        /// <summary>Stores GPS coordinates of actrual location update.</summary>
         LatLng actLatLng = new LatLng();
+        /// <summary>Stores whole distance taken from location updates.</summary>
         double? distance = null;
 
 
@@ -118,7 +121,6 @@ namespace Location
 			// to learn about updating location in the background, refer to the Backgrounding guide
 			// http://docs.xamarin.com/guides/cross-platform/application_fundamentals/backgrounding/
 
-
 			// RemoveUpdates takes a pending intent - here, we pass the current Activity
 			locMgr.RemoveUpdates(this);
 			Log.Debug(tag, "----- Location updates paused because application is entering the background");
@@ -138,22 +140,22 @@ namespace Location
             tvLongitude.Text = "Longitude: " + location.Longitude.ToString();
             tvProvider.Text = "Provider: " + location.Provider.ToString();
 
+            //Decide what to do on location update
             if (!distance.HasValue)
             {
+                //First location update - do initializations
                 Log.Debug(tag, "----- Location initialized");
-                lastLatLng.Latitude = location.Latitude;
-                lastLatLng.Longitude = location.Longitude;
+                lastLatLng.Assign(location);
                 distance = 0.0;
             }
             else
             {
+                //Next location updates - calculate distance step as actual - last & whole distance 
                 Log.Debug(tag, "----- Location changed");
-                actLatLng.Latitude = location.Latitude;
-                actLatLng.Longitude = location.Longitude;
+                actLatLng.Assign(location);
                 distance += Utils.HaversineDistance(lastLatLng, actLatLng, Utils.DistanceUnit.Kilometers);
-                lastLatLng.Latitude = actLatLng.Latitude;
-                lastLatLng.Longitude = actLatLng.Longitude;
-                tvDistance.Text = "Distance: " + distance.ToString() + " Km";
+                lastLatLng.Assign(actLatLng);
+                tvDistance.Text = String.Format("Distance: {0:0.000} Km", distance);
             }
         }
 

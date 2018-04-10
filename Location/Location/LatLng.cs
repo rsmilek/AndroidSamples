@@ -1,71 +1,59 @@
 using System;
+using Android.Locations;
 
 namespace Location
 {
-    /// <summary>
-    /// The very first thing to do is to create a class that houses the following properties
-    /// </summary>
+    /// <summary>It houses the GPS coordinates properties.</summary>
     public class LatLng
     {
         public double Latitude { get; set; }
         public double Longitude { get; set; }
 
+        /// <summary>A constructor...</summary>
         public LatLng()
         {
             this.Latitude = 0.0;
             this.Longitude = 0.0;
         }
 
+        /// <summary>A constructor...</summary>
         public LatLng(double lat, double lng)
         {
             this.Latitude = lat;
             this.Longitude = lng;
         }
 
+        /// <summary>Creates a shallow copy by creating a new object.</summary>
+        /// <returns>New object with copying the nonstatic fields of the current object to them.</returns>
         public LatLng Clone()
         {
             return (LatLng)this.MemberwiseClone();
         }
 
-        public static void CopyProperties(object objSource, object objDestination)
+        /// <summary>Assigns GPS coordinate properties from given <paramref name="location"/> object.</summary>
+        public void Assign(Android.Locations.Location location)
         {
-            //get the list of all properties in the destination object
-            var destProps = objDestination.GetType().GetProperties();
-
-            //get the list of all properties in the source object
-            foreach (var sourceProp in objSource.GetType().GetProperties())
-            {
-                foreach (var destProperty in destProps)
-                {
-                    //if we find match between source & destination properties name, set
-                    //the value to the destination property
-                    if (destProperty.Name == sourceProp.Name &&
-                            destProperty.PropertyType.IsAssignableFrom(sourceProp.PropertyType))
-                    {
-                        destProperty.SetValue(destProps, sourceProp.GetValue(
-                            sourceProp, new object[] { }), new object[] { });
-                        break;
-                    }
-                }
-            }
+            this.Latitude = location.Latitude;
+            this.Longitude = location.Longitude;
         }
 
+        /// <summary>Assigns GPS coordinate properties from given <paramref name="source"/> object it there is a match.</summary>
         public void Assign(object source)
         {
             //get the list of all properties in the destination (this) object
-            var destProps = this.GetType().GetProperties();
+            var destinationProperties = this.GetType().GetProperties();
 
             //get the list of all properties in the source object
-            foreach (var sourceProp in source.GetType().GetProperties())
+            foreach (var sourceProperty in source.GetType().GetProperties())
             {
-                foreach (var destProperty in destProps)
+                foreach (var destinationProperty in destinationProperties)
                 {
                     //if we find match between source & destination properties name, set the value to the destination property
-                    if (destProperty.Name == sourceProp.Name &&
-                            destProperty.PropertyType.IsAssignableFrom(sourceProp.PropertyType))
+                    if (destinationProperty.Name == sourceProperty.Name &&
+                            destinationProperty.PropertyType.IsAssignableFrom(sourceProperty.PropertyType) &&
+                            destinationProperty.CanWrite)
                     {
-                        destProperty.SetValue(destProps, sourceProp.GetValue(
-                            sourceProp, new object[] { }), new object[] { });
+                        destinationProperty.SetValue(this, sourceProperty.GetValue(source));
                         break;
                     }
                 }
