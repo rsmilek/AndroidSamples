@@ -9,8 +9,8 @@ namespace MyFirstGPSApp
 
     /// <summary>
     /// Before testing the app make sure that you have the following permissions within the AndroidManifest.xml:
-    /// <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />  
     /// <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />  
+    /// <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />  
     /// <uses-permission android:name="android.permission.INTERNET" />
     /// </summary>
     [Activity(Label = "MyFirstGPSApp", MainLauncher = true, Icon = "@drawable/icon")]
@@ -36,6 +36,7 @@ namespace MyFirstGPSApp
             base.OnCreate(bundle);
 
             Instance = this;
+
             SetContentView(Resource.Layout.Main);
 
             _addressText = FindViewById<TextView>(Resource.Id.txtAddress);
