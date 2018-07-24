@@ -1,5 +1,6 @@
 using Android.App;
 using Android.OS;
+using Android.Content;
 using Android.Support.V7.App;
 using Android.Util;
 using Android.Widget;
@@ -9,22 +10,24 @@ namespace com.rsware.smonsys
     [Activity(Label = "@string/ApplicationName")]
     public class MainActivity : AppCompatActivity
     {
-        static readonly string TAG = "X:" + typeof (MainActivity).Name;
-        Button _button;
-        int _clickCount;
+        static readonly string TAG = "X:" + typeof(MainActivity).Name;
+        Button btnGoDropbox;
+        int clickCount;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Main);
 
-            _button = FindViewById<Button>(Resource.Id.MyButton);
+            btnGoDropbox = FindViewById<Button>(Resource.Id.BtnDropbox);
 
-            _button.Click += (sender, args) =>
+            btnGoDropbox.Click += (sender, args) =>
                              {
-                                 string message = string.Format("You clicked {0} times.", ++_clickCount);
-                                 _button.Text = message;
+                                 string message = string.Format("{0} {1}.", Resources.GetString(Resource.String.GoDropbox), ++clickCount);
+                                 btnGoDropbox.Text = message;
                                  Log.Debug(TAG, message);
+
+                                 StartActivity(new Intent(Application.Context, typeof(DropboxActivity)));
                              };
 
             Log.Debug(TAG, "MainActivity is loaded.");
