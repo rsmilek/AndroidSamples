@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("com.xamarin.sample.splashscreen.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("com.rsware.smonsys.Resource", IsApplication=true)]
 
-namespace com.xamarin.sample.splashscreen
+namespace com.rsware.smonsys
 {
 	
 	

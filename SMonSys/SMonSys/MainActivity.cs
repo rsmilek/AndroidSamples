@@ -4,7 +4,7 @@ using Android.Support.V7.App;
 using Android.Util;
 using Android.Widget;
 
-namespace com.xamarin.sample.splashscreen
+namespace com.rsware.smonsys
 {
     [Activity(Label = "@string/ApplicationName")]
     public class MainActivity : AppCompatActivity
