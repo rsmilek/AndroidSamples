@@ -24,7 +24,7 @@ namespace com.rsware.smonsys
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            SetContentView(Resource.Layout.DropboxWeb);
+            SetContentView(Resource.Layout.Dropbox);
 
             webView = FindViewById<WebView>(Resource.Id.WebView);
 

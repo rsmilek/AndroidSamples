@@ -2314,7 +2314,7 @@ namespace com.rsware.smonsys
 			public const int abc_select_dialog_material = 2130968601;
 			
 			// aapt resource value: 0x7f04001a
-			public const int DropboxWeb = 2130968602;
+			public const int Dropbox = 2130968602;
 			
 			// aapt resource value: 0x7f04001b
 			public const int Main = 2130968603;
