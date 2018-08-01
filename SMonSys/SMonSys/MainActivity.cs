@@ -7,12 +7,13 @@ using Android.Widget;
 
 namespace com.rsware.smonsys
 {
-    [Activity(Label = "@string/ApplicationName")]
+    [Activity(Label = "@string/ApplicationName", Theme = "@style/MyTheme")]
     public class MainActivity : AppCompatActivity
     {
         static readonly string TAG = "X:" + typeof(MainActivity).Name;
         Button btnGoDropbox;
         int clickCount;
+
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -30,7 +31,18 @@ namespace com.rsware.smonsys
                                  StartActivity(new Intent(Application.Context, typeof(DropboxActivity)));
                              };
 
+            // Connect event handlers
+            //btnGoDropbox.Click += delegate { btnGoDropbox_OnClick(); };
+
             Log.Debug(TAG, "MainActivity is loaded.");
         }
+
+
+
+        //protected void btnGoDropbox_OnClick()
+        //{
+
+        //}
+
     }
 }

@@ -3,8 +3,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:id="@+id/progressBar" />
     <android.webkit.WebView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/WebView" />
+        android:id="@+id/webView" />
 </LinearLayout>

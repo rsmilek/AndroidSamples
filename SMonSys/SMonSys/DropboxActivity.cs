@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
@@ -13,64 +14,115 @@ using Android.Support.V7.App;
 using Android.Util;
 using Android.Webkit;
 using Android.Graphics;
+using Dropbox.Api;
 
 namespace com.rsware.smonsys
 {
-    [Activity(Label = "@string/ApplicationName")]
-    public class DropboxActivity : Activity
+    [Activity(Label = "@string/DropboxLogin", Theme = "@style/MyTheme")]
+    public class DropboxActivity : AppCompatActivity
     {
+        static ProgressBar progressBar;
         WebView webView;
+        string oauth2State;
+        Uri redirectUri = new Uri("https://localhost/authorize");
+
+        public Uri RedirectUri { get { return redirectUri; } }
+        public String Oauth2State { get { return oauth2State; } }
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Dropbox);
 
-            webView = FindViewById<WebView>(Resource.Id.WebView);
+            progressBar = FindViewById<ProgressBar>(Resource.Id.progressBar);
+            webView = FindViewById<WebView>(Resource.Id.webView);
 
+            CookieManager.Instance.RemoveAllCookies(null);                       // TODO: Compatibility?   Smaze historii ulozeneho prihlasovani ve webview, 
+            CookieManager.Instance.Flush();
 
-            webView.SetWebViewClient(new WebViewClient());
-            webView.LoadUrl("http://www.dropbox.com");
-
-            // Some websites will require Javascript to be enabled
-            webView.Settings.JavaScriptEnabled = true;
-            // allow zooming/panning            
-            webView.Settings.BuiltInZoomControls = true;
+            //webView.Settings.UserAgentString = "Android WebView";
+            //webView.Settings.LoadWithOverviewMode = true;
+            //webView.Settings.UseWideViewPort = true;
+            //webView.Settings.BuiltInZoomControls = true;
+            webView.Settings.JavaScriptEnabled = true;                      // Some websites will require Javascript to be enabled
+            webView.Settings.BuiltInZoomControls = true;                    // allow zooming/panning
             webView.Settings.SetSupportZoom(true);
-            // scrollbar stuff            
-            webView.ScrollBarStyle = ScrollbarStyles.OutsideOverlay;
-            // so there's no 'white line'            
-            webView.ScrollbarFadingEnabled = false;
+            webView.ScrollBarStyle = ScrollbarStyles.OutsideOverlay;        // scrollbar stuff            
+            webView.ScrollbarFadingEnabled = false;                         // so there's no 'white line'
 
+            webView.SetWebViewClient(new DropboxWebLogin(this));
 
+            oauth2State = Guid.NewGuid().ToString("N");
+            var authorizeUri = DropboxOAuth2Helper.GetAuthorizeUri(OAuthResponseType.Token, "byne1x64wrx1i3r", RedirectUri, oauth2State);
 
-
-//            webView.Settings.JavaScriptEnabled = true;
-//            webView.Settings.UserAgentString = "Android WebView";
-//            webView.Settings.LoadWithOverviewMode = true;
-//            webView.Settings.UseWideViewPort = true;
-//            webView.Settings.BuiltInZoomControls = true;
-
-//            webView.SetWebViewClient(new DropboxWebViewClient());
-//////            webView.LoadUrl("https://www.xamarin.com/university");
-//            ////            webView.LoadData("pokus", "text/html", null);
-//            webView.LoadUrl("www.ibm.com‎");
+            webView.LoadUrl(authorizeUri.AbsoluteUri.ToString());
         }
+
+        public override void OnBackPressed()
+        {
+            if (webView.CanGoBack())
+                webView.GoBack();
+            else
+                base.OnBackPressed();
+        }
+
+
+        public class DropboxWebLogin : WebViewClient
+        {
+            DropboxActivity dropboxActivity;
+            string accessToken;
+            bool loading;
+
+            public DropboxWebLogin(DropboxActivity dropboxActivity)
+            {
+                this.dropboxActivity = dropboxActivity;
+            }
+
+            /// <summary>Give the host application a chance to take over the control when a new url is about to be loaded in the current WebView</summary>
+            public override bool ShouldOverrideUrlLoading(WebView view, IWebResourceRequest request)
+            {
+                view.LoadUrl(request.Url.ToString());
+                return true;
+            }
+
+            public override void OnPageStarted(WebView view, String url, Bitmap favicon)
+            {
+                loading = true;
+                progressBar.Progress = view.Progress;
+                progressBar.Visibility = ViewStates.Visible;
+
+                if (!url.StartsWith(dropboxActivity.RedirectUri.ToString(), StringComparison.OrdinalIgnoreCase))
+                {
+                    return;                                                     // we need to ignore all navigation that isn't to the redirect uri.  
+                }
+
+                var result = DropboxOAuth2Helper.ParseTokenFragment(new Uri(url));
+                if (result.State != dropboxActivity.Oauth2State)
+                {
+                    return;
+                }
+
+                accessToken = result.AccessToken;
+
+                view.StopLoading(); // zastavi loadovani stranky s redirectUri, ktera samozdrejme neexistuje a pak je vyhozena chyba ...
+                dropboxActivity.Finish();
+            }
+
+            public override void OnLoadResource(WebView view, string url)
+            {
+                if (loading)
+                    progressBar.Progress = view.Progress;
+            }
+
+            public override void OnPageFinished(WebView view, string url)
+            {
+                progressBar.Progress = 0;
+                progressBar.Visibility = ViewStates.Invisible;
+                loading = false;
+            }
+        }
+
     }
 
 
-    public class DropboxWebViewClient : WebViewClient
-    {
-        public override void OnPageStarted(WebView view, String url, Bitmap favicon)
-        {
-            // TODO Auto-generated method stub
-            base.OnPageStarted(view, url, favicon);
-        }
-
-        public override bool ShouldOverrideUrlLoading(WebView view, IWebResourceRequest request)
-        {
-            view.LoadUrl(request.Url.ToString());
-            return true;
-        }
-    }
 }
