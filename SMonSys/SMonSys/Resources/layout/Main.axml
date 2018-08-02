@@ -3,12 +3,21 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+    <TextView
+        android:id="@+id/tvDropboxInfo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:text="@string/DropboxInfo" />
     <Button
-        android:id="@+id/BtnDropbox"
+        android:id="@+id/btnDropbox"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/GoDropbox"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
+        android:layout_marginRight="20dp"
+        style="@style/button" />
 </LinearLayout>

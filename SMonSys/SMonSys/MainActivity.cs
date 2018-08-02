@@ -20,13 +20,14 @@ namespace com.rsware.smonsys
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Main);
 
-            btnGoDropbox = FindViewById<Button>(Resource.Id.BtnDropbox);
+            btnGoDropbox = FindViewById<Button>(Resource.Id.btnDropbox);
 
             btnGoDropbox.Click += (sender, args) =>
                              {
-                                 string message = string.Format("{0} {1}.", Resources.GetString(Resource.String.GoDropbox), ++clickCount);
-                                 btnGoDropbox.Text = message;
-                                 Log.Debug(TAG, message);
+                                 //string message = string.Format("{0} {1}.", Resources.GetString(Resource.String.GoDropbox), ++clickCount);
+                                 //var message = Resources.GetString(Resource.String.GoDropbox);
+                                 //btnGoDropbox.Text = message;
+                                 //Log.Debug(TAG, message);
 
                                  StartActivity(new Intent(Application.Context, typeof(DropboxActivity)));
                              };

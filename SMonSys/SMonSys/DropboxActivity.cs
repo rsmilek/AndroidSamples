@@ -53,7 +53,7 @@ namespace com.rsware.smonsys
             webView.SetWebViewClient(new DropboxWebLogin(this));
 
             oauth2State = Guid.NewGuid().ToString("N");
-            var authorizeUri = DropboxOAuth2Helper.GetAuthorizeUri(OAuthResponseType.Token, "byne1x64wrx1i3r", RedirectUri, oauth2State);
+            var authorizeUri = DropboxOAuth2Helper.GetAuthorizeUri(OAuthResponseType.Token, "ohgnlxqq0gpcoby", RedirectUri, oauth2State);
 
             webView.LoadUrl(authorizeUri.AbsoluteUri.ToString());
         }
@@ -96,16 +96,25 @@ namespace com.rsware.smonsys
                     return;                                                     // we need to ignore all navigation that isn't to the redirect uri.  
                 }
 
-                var result = DropboxOAuth2Helper.ParseTokenFragment(new Uri(url));
-                if (result.State != dropboxActivity.Oauth2State)
+                try
                 {
-                    return;
+                    var result = DropboxOAuth2Helper.ParseTokenFragment(new Uri(url)); // Causes exception on Dropbox App disallow access
+                    if (result.State != dropboxActivity.Oauth2State)
+                    {
+                        return;
+                    }
+
+                    accessToken = result.AccessToken; // TODO: Ulozit token 
                 }
-
-                accessToken = result.AccessToken;
-
-                view.StopLoading(); // zastavi loadovani stranky s redirectUri, ktera samozdrejme neexistuje a pak je vyhozena chyba ...
-                dropboxActivity.Finish();
+                catch
+                {
+                    // TODO: Ulozit ne token :-)
+                }
+                finally
+                {
+                    view.StopLoading(); // zastavi loadovani stranky s redirectUri, ktera samozdrejme neexistuje a pak je vyhozena chyba ...
+                    dropboxActivity.Finish();
+                }
             }
 
             public override void OnLoadResource(WebView view, string url)

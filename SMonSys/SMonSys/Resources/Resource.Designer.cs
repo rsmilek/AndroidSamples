@@ -1762,52 +1762,67 @@ namespace com.rsware.smonsys
 			public const int abc_vector_test = 2130837586;
 			
 			// aapt resource value: 0x7f020053
-			public const int notification_action_background = 2130837587;
+			public const int Button = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int notification_bg = 2130837588;
+			public const int Button_Disabled = 2130837588;
 			
 			// aapt resource value: 0x7f020055
-			public const int notification_bg_low = 2130837589;
+			public const int Button_Enabled = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public const int notification_bg_low_normal = 2130837590;
+			public const int Button_Focused = 2130837590;
 			
 			// aapt resource value: 0x7f020057
-			public const int notification_bg_low_pressed = 2130837591;
+			public const int Button_Pressed = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int notification_bg_normal = 2130837592;
+			public const int notification_action_background = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int notification_bg_normal_pressed = 2130837593;
+			public const int notification_bg = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int notification_icon_background = 2130837594;
-			
-			// aapt resource value: 0x7f020061
-			public const int notification_template_icon_bg = 2130837601;
-			
-			// aapt resource value: 0x7f020062
-			public const int notification_template_icon_low_bg = 2130837602;
+			public const int notification_bg_low = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int notification_tile_bg = 2130837595;
+			public const int notification_bg_low_normal = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int notify_panel_notification_icon_bg = 2130837596;
+			public const int notification_bg_low_pressed = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int splash_logo = 2130837597;
+			public const int notification_bg_normal = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int splash_screen = 2130837598;
+			public const int notification_bg_normal_pressed = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int tooltip_frame_dark = 2130837599;
+			public const int notification_icon_background = 2130837599;
+			
+			// aapt resource value: 0x7f020066
+			public const int notification_template_icon_bg = 2130837606;
+			
+			// aapt resource value: 0x7f020067
+			public const int notification_template_icon_low_bg = 2130837607;
 			
 			// aapt resource value: 0x7f020060
-			public const int tooltip_frame_light = 2130837600;
+			public const int notification_tile_bg = 2130837600;
+			
+			// aapt resource value: 0x7f020061
+			public const int notify_panel_notification_icon_bg = 2130837601;
+			
+			// aapt resource value: 0x7f020062
+			public const int splash_logo = 2130837602;
+			
+			// aapt resource value: 0x7f020063
+			public const int splash_screen = 2130837603;
+			
+			// aapt resource value: 0x7f020064
+			public const int tooltip_frame_dark = 2130837604;
+			
+			// aapt resource value: 0x7f020065
+			public const int tooltip_frame_light = 2130837605;
 			
 			static Drawable()
 			{
@@ -1825,9 +1840,6 @@ namespace com.rsware.smonsys
 			// aapt resource value: 0x7f0b0024
 			public const int ALT = 2131427364;
 			
-			// aapt resource value: 0x7f0b0068
-			public const int BtnDropbox = 2131427432;
-			
 			// aapt resource value: 0x7f0b0025
 			public const int CTRL = 2131427365;
 			
@@ -1843,8 +1855,8 @@ namespace com.rsware.smonsys
 			// aapt resource value: 0x7f0b0029
 			public const int SYM = 2131427369;
 			
-			// aapt resource value: 0x7f0b006c
-			public const int action0 = 2131427436;
+			// aapt resource value: 0x7f0b006d
+			public const int action0 = 2131427437;
 			
 			// aapt resource value: 0x7f0b0057
 			public const int action_bar = 2131427415;
@@ -1867,17 +1879,17 @@ namespace com.rsware.smonsys
 			// aapt resource value: 0x7f0b0035
 			public const int action_bar_title = 2131427381;
 			
-			// aapt resource value: 0x7f0b0069
-			public const int action_container = 2131427433;
+			// aapt resource value: 0x7f0b006a
+			public const int action_container = 2131427434;
 			
 			// aapt resource value: 0x7f0b0058
 			public const int action_context_bar = 2131427416;
 			
-			// aapt resource value: 0x7f0b0070
-			public const int action_divider = 2131427440;
+			// aapt resource value: 0x7f0b0071
+			public const int action_divider = 2131427441;
 			
-			// aapt resource value: 0x7f0b006a
-			public const int action_image = 2131427434;
+			// aapt resource value: 0x7f0b006b
+			public const int action_image = 2131427435;
 			
 			// aapt resource value: 0x7f0b0002
 			public const int action_menu_divider = 2131427330;
@@ -1894,11 +1906,11 @@ namespace com.rsware.smonsys
 			// aapt resource value: 0x7f0b0037
 			public const int action_mode_close_button = 2131427383;
 			
-			// aapt resource value: 0x7f0b006b
-			public const int action_text = 2131427435;
+			// aapt resource value: 0x7f0b006c
+			public const int action_text = 2131427436;
 			
-			// aapt resource value: 0x7f0b0079
-			public const int actions = 2131427449;
+			// aapt resource value: 0x7f0b007a
+			public const int actions = 2131427450;
 			
 			// aapt resource value: 0x7f0b0038
 			public const int activity_chooser_view_content = 2131427384;
@@ -1924,17 +1936,20 @@ namespace com.rsware.smonsys
 			// aapt resource value: 0x7f0b002f
 			public const int bottom = 2131427375;
 			
+			// aapt resource value: 0x7f0b0069
+			public const int btnDropbox = 2131427433;
+			
 			// aapt resource value: 0x7f0b003e
 			public const int buttonPanel = 2131427390;
 			
-			// aapt resource value: 0x7f0b006d
-			public const int cancel_action = 2131427437;
+			// aapt resource value: 0x7f0b006e
+			public const int cancel_action = 2131427438;
 			
 			// aapt resource value: 0x7f0b004e
 			public const int checkbox = 2131427406;
 			
-			// aapt resource value: 0x7f0b0075
-			public const int chronometer = 2131427445;
+			// aapt resource value: 0x7f0b0076
+			public const int chronometer = 2131427446;
 			
 			// aapt resource value: 0x7f0b002b
 			public const int collapseActionView = 2131427371;
@@ -1963,8 +1978,8 @@ namespace com.rsware.smonsys
 			// aapt resource value: 0x7f0b0022
 			public const int end = 2131427362;
 			
-			// aapt resource value: 0x7f0b007b
-			public const int end_padder = 2131427451;
+			// aapt resource value: 0x7f0b007c
+			public const int end_padder = 2131427452;
 			
 			// aapt resource value: 0x7f0b0039
 			public const int expand_activities_button = 2131427385;
@@ -1984,8 +1999,8 @@ namespace com.rsware.smonsys
 			// aapt resource value: 0x7f0b003d
 			public const int icon = 2131427389;
 			
-			// aapt resource value: 0x7f0b007a
-			public const int icon_group = 2131427450;
+			// aapt resource value: 0x7f0b007b
+			public const int icon_group = 2131427451;
 			
 			// aapt resource value: 0x7f0b002c
 			public const int ifRoom = 2131427372;
@@ -1993,8 +2008,8 @@ namespace com.rsware.smonsys
 			// aapt resource value: 0x7f0b003a
 			public const int image = 2131427386;
 			
-			// aapt resource value: 0x7f0b0076
-			public const int info = 2131427446;
+			// aapt resource value: 0x7f0b0077
+			public const int info = 2131427447;
 			
 			// aapt resource value: 0x7f0b0034
 			public const int italic = 2131427380;
@@ -2011,11 +2026,11 @@ namespace com.rsware.smonsys
 			// aapt resource value: 0x7f0b003c
 			public const int list_item = 2131427388;
 			
-			// aapt resource value: 0x7f0b006f
-			public const int media_actions = 2131427439;
+			// aapt resource value: 0x7f0b0070
+			public const int media_actions = 2131427440;
 			
-			// aapt resource value: 0x7f0b007c
-			public const int message = 2131427452;
+			// aapt resource value: 0x7f0b007d
+			public const int message = 2131427453;
 			
 			// aapt resource value: 0x7f0b0023
 			public const int middle = 2131427363;
@@ -2032,14 +2047,14 @@ namespace com.rsware.smonsys
 			// aapt resource value: 0x7f0b0010
 			public const int normal = 2131427344;
 			
-			// aapt resource value: 0x7f0b0078
-			public const int notification_background = 2131427448;
+			// aapt resource value: 0x7f0b0079
+			public const int notification_background = 2131427449;
+			
+			// aapt resource value: 0x7f0b0073
+			public const int notification_main_column = 2131427443;
 			
 			// aapt resource value: 0x7f0b0072
-			public const int notification_main_column = 2131427442;
-			
-			// aapt resource value: 0x7f0b0071
-			public const int notification_main_column_container = 2131427441;
+			public const int notification_main_column_container = 2131427442;
 			
 			// aapt resource value: 0x7f0b0040
 			public const int parentPanel = 2131427392;
@@ -2056,11 +2071,11 @@ namespace com.rsware.smonsys
 			// aapt resource value: 0x7f0b0050
 			public const int radio = 2131427408;
 			
-			// aapt resource value: 0x7f0b0077
-			public const int right_icon = 2131427447;
+			// aapt resource value: 0x7f0b0078
+			public const int right_icon = 2131427448;
 			
-			// aapt resource value: 0x7f0b0073
-			public const int right_side = 2131427443;
+			// aapt resource value: 0x7f0b0074
+			public const int right_side = 2131427444;
 			
 			// aapt resource value: 0x7f0b001b
 			public const int screen = 2131427355;
@@ -2134,8 +2149,8 @@ namespace com.rsware.smonsys
 			// aapt resource value: 0x7f0b001e
 			public const int src_over = 2131427358;
 			
-			// aapt resource value: 0x7f0b006e
-			public const int status_bar_latest_event_content = 2131427438;
+			// aapt resource value: 0x7f0b006f
+			public const int status_bar_latest_event_content = 2131427439;
 			
 			// aapt resource value: 0x7f0b0051
 			public const int submenuarrow = 2131427409;
@@ -2161,8 +2176,8 @@ namespace com.rsware.smonsys
 			// aapt resource value: 0x7f0b0044
 			public const int textSpacerNoTitle = 2131427396;
 			
-			// aapt resource value: 0x7f0b0074
-			public const int time = 2131427444;
+			// aapt resource value: 0x7f0b0075
+			public const int time = 2131427445;
 			
 			// aapt resource value: 0x7f0b000e
 			public const int title = 2131427342;
@@ -2178,6 +2193,9 @@ namespace com.rsware.smonsys
 			
 			// aapt resource value: 0x7f0b0049
 			public const int topPanel = 2131427401;
+			
+			// aapt resource value: 0x7f0b0068
+			public const int tvDropboxInfo = 2131427432;
 			
 			// aapt resource value: 0x7f0b001f
 			public const int uniform = 2131427359;
@@ -2411,14 +2429,17 @@ namespace com.rsware.smonsys
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7f06001f
+			public const int ApplicationName = 2131099679;
+			
 			// aapt resource value: 0x7f060020
-			public const int ApplicationName = 2131099680;
+			public const int DropboxInfo = 2131099680;
+			
+			// aapt resource value: 0x7f060022
+			public const int DropboxLogin = 2131099682;
 			
 			// aapt resource value: 0x7f060021
-			public const int DropboxLogin = 2131099681;
-			
-			// aapt resource value: 0x7f06001f
-			public const int GoDropbox = 2131099679;
+			public const int GoDropbox = 2131099681;
 			
 			// aapt resource value: 0x7f060000
 			public const int abc_action_bar_home_description = 2131099648;
@@ -3375,6 +3396,9 @@ namespace com.rsware.smonsys
 			// aapt resource value: 0x7f08010d
 			public const int ThemeOverlay_AppCompat_Light = 2131230989;
 			
+			// aapt resource value: 0x7f080165
+			public const int Widget = 2131231077;
+			
 			// aapt resource value: 0x7f08010e
 			public const int Widget_AppCompat_ActionBar = 2131230990;
 			
@@ -3596,6 +3620,9 @@ namespace com.rsware.smonsys
 			
 			// aapt resource value: 0x7f080160
 			public const int Widget_Compat_NotificationActionText = 2131231072;
+			
+			// aapt resource value: 0x7f080166
+			public const int button = 2131231078;
 			
 			static Style()
 			{
