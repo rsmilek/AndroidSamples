@@ -14,7 +14,6 @@ namespace NavigationDrawer
     [Activity(Label = "@string/app_name", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/Icon")]
     public class MainActivity : AppCompatActivity
     {
-
         DrawerLayout drawerLayout;
         NavigationView navigationView;
 
@@ -58,7 +57,6 @@ namespace NavigationDrawer
                         ListItemClicked(1);
                         break;
                 }
-
 
                 drawerLayout.CloseDrawers();
             };
