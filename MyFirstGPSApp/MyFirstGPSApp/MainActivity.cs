@@ -46,6 +46,21 @@ namespace MyFirstGPSApp
             RegisterService();
         }
 
+        protected override void OnResume()
+        {
+            base.OnResume();
+            RegisterBroadcastReceiver();
+
+            if (_binder != null)
+                _binder.Service.SetAddress();
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            UnRegisterBroadcastReceiver();
+        }
+
         /// <summary>
         /// The RegisterService() registers and binds the service needed. 
         /// </summary>
@@ -83,19 +98,6 @@ namespace MyFirstGPSApp
             _addressText.Text = intent.GetStringExtra("Address");
             _remarksText.Text = intent.GetStringExtra("Remarks");
         }
-
-        protected override void OnResume()
-        {
-            base.OnResume();
-            RegisterBroadcastReceiver();
-        }
-
-        protected override void OnPause()
-        {
-            base.OnPause();
-            UnRegisterBroadcastReceiver();
-        }
-
 
         /// <summary>
         /// The GPSServiceReciever class is used to handle the message from a broadcast by implemeting BroadcastReciever. 

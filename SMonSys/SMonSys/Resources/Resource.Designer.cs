@@ -1800,11 +1800,11 @@ namespace com.rsware.smonsys
 			// aapt resource value: 0x7f02005f
 			public const int notification_icon_background = 2130837599;
 			
-			// aapt resource value: 0x7f020066
-			public const int notification_template_icon_bg = 2130837606;
-			
 			// aapt resource value: 0x7f020067
-			public const int notification_template_icon_low_bg = 2130837607;
+			public const int notification_template_icon_bg = 2130837607;
+			
+			// aapt resource value: 0x7f020068
+			public const int notification_template_icon_low_bg = 2130837608;
 			
 			// aapt resource value: 0x7f020060
 			public const int notification_tile_bg = 2130837600;
@@ -1813,16 +1813,19 @@ namespace com.rsware.smonsys
 			public const int notify_panel_notification_icon_bg = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int splash_logo = 2130837602;
+			public const int red_button = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int splash_screen = 2130837603;
+			public const int splash_logo = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int tooltip_frame_dark = 2130837604;
+			public const int splash_screen = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int tooltip_frame_light = 2130837605;
+			public const int tooltip_frame_dark = 2130837605;
+			
+			// aapt resource value: 0x7f020066
+			public const int tooltip_frame_light = 2130837606;
 			
 			static Drawable()
 			{
@@ -3623,6 +3626,9 @@ namespace com.rsware.smonsys
 			
 			// aapt resource value: 0x7f080166
 			public const int button = 2131231078;
+			
+			// aapt resource value: 0x7f080167
+			public const int button_text = 2131231079;
 			
 			static Style()
 			{

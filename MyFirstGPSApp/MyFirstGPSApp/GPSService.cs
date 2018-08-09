@@ -33,6 +33,12 @@ namespace MyFirstGPSApp
         IBinder _binder;
         protected LocationManager _locationManager = (LocationManager)Android.App.Application.Context.GetSystemService(LocationService);
 
+
+        public void SetAddress()
+        {
+            _address = "my addr";
+        }
+
         public override IBinder OnBind(Intent intent)
         {
             _binder = new GPSServiceBinder(this);
@@ -46,16 +52,36 @@ namespace MyFirstGPSApp
 
         public void StartLocationUpdates()
         {
-            Criteria criteriaForGPSService = new Criteria
+            //Criteria criteriaForGPSService = new Criteria
+            //{
+            //    //A constant indicating an approximate accuracy
+            //    Accuracy = Accuracy.Coarse,
+            //    PowerRequirement = Power.Medium
+            //};
+
+            //var locationProvider = _locationManager.GetBestProvider(criteriaForGPSService, true);
+            //_locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
+
+
+
+
+
+            //Criteria criteriaForGPSService = new Criteria
+            //{
+            //    Accuracy = Accuracy.Coarse,
+            //    PowerRequirement = Power.High
+            //};
+
+            //var locationProvider = _locationManager.GetBestProvider(criteriaForGPSService, true);
+            //_locationManager.RequestLocationUpdates(locationProvider, 2000, 1, this);
+
+
+            // Requestes GPS provider for updates every min 1000ms & min 1m
+            if (_locationManager.AllProviders.Contains(LocationManager.GpsProvider)
+                && _locationManager.IsProviderEnabled(LocationManager.GpsProvider))
             {
-                //A constant indicating an approximate accuracy
-                Accuracy = Accuracy.Coarse,
-                PowerRequirement = Power.Medium
-            };
-
-            var locationProvider = _locationManager.GetBestProvider(criteriaForGPSService, true);
-            _locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
-
+                _locationManager.RequestLocationUpdates(LocationManager.GpsProvider, 0, 0, this);
+            }
         }
 
         public event EventHandler<LocationChangedEventArgs> LocationChanged = delegate { };
@@ -80,37 +106,47 @@ namespace MyFirstGPSApp
                     _location = "Unable to determine your location.";
                 else
                 {
-                    _location = String.Format("{0},{1}", _currentLocation.Latitude, _currentLocation.Longitude);
+                    //_location = String.Format("{0},{1}", _currentLocation.Latitude, _currentLocation.Longitude);
 
-                    Geocoder geocoder = new Geocoder(this);
+                    //Geocoder geocoder = new Geocoder(this);
 
-                    //The Geocoder class retrieves a list of address from Google over the internet
-                    IList<Address> addressList = geocoder.GetFromLocation(_currentLocation.Latitude, _currentLocation.Longitude, 10);
+                    ////The Geocoder class retrieves a list of address from Google over the internet
+                    //IList<Address> addressList = geocoder.GetFromLocation(_currentLocation.Latitude, _currentLocation.Longitude, 10);
 
-                    Address addressCurrent = addressList.FirstOrDefault();
+                    //Address addressCurrent = addressList.FirstOrDefault();
 
-                    if (addressCurrent != null)
-                    {
-                        StringBuilder deviceAddress = new StringBuilder();
+                    //if (addressCurrent != null)
+                    //{
+                    //    StringBuilder deviceAddress = new StringBuilder();
 
-                        for (int i = 0; i < addressCurrent.MaxAddressLineIndex; i++)
-                            deviceAddress.Append(addressCurrent.GetAddressLine(i))
-                                .AppendLine(",");
+                    //    for (int i = 0; i < addressCurrent.MaxAddressLineIndex; i++)
+                    //        deviceAddress.Append(addressCurrent.GetAddressLine(i))
+                    //            .AppendLine(",");
 
-                        _address = deviceAddress.ToString();
-                    }
-                    else
-                        _address = "Unable to determine the address.";
+                    //    _address = deviceAddress.ToString();
+                    //}
+                    //else
+                    //    _address = "Unable to determine the address.";
 
-                    IList<Address> source = geocoder.GetFromLocationName(_sourceAddress, 1);
-                    Address addressOrigin = source.FirstOrDefault();
+                    //IList<Address> source = geocoder.GetFromLocationName(_sourceAddress, 1);
+                    //Address addressOrigin = source.FirstOrDefault();
 
-                    var coord1 = new LatLng(addressOrigin.Latitude, addressOrigin.Longitude);
-                    var coord2 = new LatLng(addressCurrent.Latitude, addressCurrent.Longitude);
+                    //var coord1 = new LatLng(addressOrigin.Latitude, addressOrigin.Longitude);
+                    //var coord2 = new LatLng(addressCurrent.Latitude, addressCurrent.Longitude);
 
-                    var distanceInRadius = Utils.HaversineDistance(coord1, coord2, Utils.DistanceUnit.Miles);
+                    //var distanceInRadius = Utils.HaversineDistance(coord1, coord2, Utils.DistanceUnit.Miles);
 
-                    _remarks = string.Format("Your are {0} miles away from your original location.", distanceInRadius);
+                    //_remarks = string.Format("Your are {0} miles away from your original location.", distanceInRadius);
+
+
+
+
+                    _location = String.Format("{0:0.00000000}  {1:0.00000000}", _currentLocation.Latitude, _currentLocation.Longitude);
+                    _address = "_address";
+                    _remarks = "_remarks";
+
+
+
 
                     Intent intent = new Intent(this, typeof(MainActivity.GPSServiceReciever));
                     intent.SetAction(MainActivity.GPSServiceReciever.LOCATION_UPDATED);
@@ -154,8 +190,8 @@ namespace MyFirstGPSApp
     /// </summary>
     public class GPSServiceBinder : Binder
     {
-        public GPSService Service { get { return this.LocService; } }
         protected GPSService LocService;
+        public GPSService Service { get { return this.LocService; } }
         public bool IsBound { get; set; }
 
         public GPSServiceBinder(GPSService service) { this.LocService = service; }
