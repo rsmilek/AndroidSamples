@@ -12,7 +12,7 @@ namespace com.rsware.smonsys
     {
         static readonly string TAG = "X:" + typeof(MainActivity).Name;
         Button btnGoDropbox;
-        int clickCount;
+        //int clickCount;
 
 
         protected override void OnCreate(Bundle bundle)

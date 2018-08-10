@@ -12,11 +12,10 @@
         android:layout_marginRight="40dp"
         android:text="@string/DropboxInfo" />
     <Button
-        android:background="@drawable/red_button"
         android:id="@+id/btnDropbox"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/GoDropbox"
-        style="@style/button" />
+        style="@style/button_text" />
 </LinearLayout>
