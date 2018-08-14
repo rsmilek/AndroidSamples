@@ -2,20 +2,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:background="@color/splash_background">
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/smonsys" />
     <TextView
-        android:id="@+id/tvDropboxInfo"
+        android:id="@+id/tvWelcome"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        android:text="@string/Welcome"
+        android:textStyle="bold|italic"
+        android:gravity="center"
+        android:textSize="40dp"
+        android:textColor="@color/primaryLight" />
+    <TextView
+        android:id="@+id/tvDropboxInfo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:textColor="#ffffff"
         android:text="@string/DropboxInfo" />
     <Button
         android:id="@+id/btnDropbox"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:text="@string/GoDropbox"
         style="@style/button_text" />
 </LinearLayout>

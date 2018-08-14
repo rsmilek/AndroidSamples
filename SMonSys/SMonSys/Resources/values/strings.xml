@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="ApplicationName">Sensor Monitoring System</string>
+  <string name="ApplicationNameShort">SMonSys</string>
 
-  <string name="DropboxInfo">You have login to your Dropbox account to create folder for data accquired by the monitoring sensors. The app will have access to this folder only!</string>
-  <string name="GoDropbox">Go to Dropbox ...</string>
+  <string name="Welcome">Welcome</string>
+  <string name="DropboxInfo">You have to login to your Dropbox account to create folder \'SMonSys\' for data acquired by the monitoring sensors. The app will have access to this folder only!</string>
+  <string name="GoDropbox">Go to Dropbox</string>
 
   <string name="DropboxLogin">Dropbox login</string>
 </resources>

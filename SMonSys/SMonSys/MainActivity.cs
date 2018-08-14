@@ -7,7 +7,7 @@ using Android.Widget;
 
 namespace com.rsware.smonsys
 {
-    [Activity(Label = "@string/ApplicationName", Theme = "@style/MyTheme")]
+    [Activity(Label = "@string/ApplicationName", Theme = "@style/MyTheme.NoActionBar")]
     public class MainActivity : AppCompatActivity
     {
         static readonly string TAG = "X:" + typeof(MainActivity).Name;
