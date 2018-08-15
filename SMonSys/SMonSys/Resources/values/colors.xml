@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  
   <!-- Material design palete -->
   <color name="primary">#8BC34A</color>
   <color name="primaryDark">#689F38</color>
@@ -9,8 +8,4 @@
   <color name="primaryText">#212121</color>
   <color name="secondaryText">#757575</color>
   <color name="divider">#BDBDBD</color>
-
-  <!-- App special colors -->
-  <color name="window_background">#F5F5F5</color>
-  <color name="splash_background">#8BC34A</color>
 </resources>
