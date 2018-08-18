@@ -13,6 +13,7 @@ using Android.Support.V7.App;
 /// See Googles' tutorial https://developer.android.com/training/appbar/ on which is this code snipet inspired with.
 /// - Toolbar is widget which replaces native Actionbar over various Android relaces and its definition is done in toolbar.axml.
 ///   To use include it into your own layout, f.g. main.axml. Note: See aplication style definition styles.xml how to Actionbar switch off.
+///   In the activity's onCreate() method, call the activity's setSupportActionBar() method, and pass the activity's toolbar.
 /// </summary>
 
 namespace MyToolbarApp
@@ -27,6 +28,8 @@ namespace MyToolbarApp
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.main);
+
+            // Note that the Toolbar defined in the layout has the id "toolbar"
             var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             if (toolbar != null)
             {
