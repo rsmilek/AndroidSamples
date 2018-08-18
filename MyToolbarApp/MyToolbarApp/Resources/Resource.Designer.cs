@@ -1757,6 +1757,12 @@ namespace MyToolbarApp
 			// aapt resource value: 0x7f0a005a
 			public const int action_image = 2131361882;
 			
+			// aapt resource value: 0x7f0a0070
+			public const int action_item1 = 2131361904;
+			
+			// aapt resource value: 0x7f0a0071
+			public const int action_item2 = 2131361905;
+			
 			// aapt resource value: 0x7f0a0002
 			public const int action_menu_divider = 2131361794;
 			
@@ -2248,6 +2254,22 @@ namespace MyToolbarApp
 			}
 			
 			private Layout()
+			{
+			}
+		}
+		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f0d0000
+			public const int menu = 2131558400;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
 			{
 			}
 		}

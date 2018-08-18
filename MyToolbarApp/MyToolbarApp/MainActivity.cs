@@ -14,6 +14,8 @@ using Android.Support.V7.App;
 /// - Toolbar is widget which replaces native Actionbar over various Android relaces and its definition is done in toolbar.axml.
 ///   To use include it into your own layout, f.g. main.axml. Note: See aplication style definition styles.xml how to Actionbar switch off.
 ///   In the activity's onCreate() method, call the activity's setSupportActionBar() method, and pass the activity's toolbar.
+/// - To add and hancle Toolbar actions you have to add xml menu resource menu.xml, see comments how to handle actions.
+///   Note: Use 'Menu Compat' from available new items.
 /// </summary>
 
 namespace MyToolbarApp
@@ -38,16 +40,44 @@ namespace MyToolbarApp
                 SupportActionBar.SetHomeButtonEnabled(false);
             }
 
-            // Get our button from the layout resource,
-            // and attach an event to it
+            // Get our button from the layout resource and attach an event to it
             var clickButton = FindViewById<Button>(Resource.Id.my_button);
 
             clickButton.Click += (sender, args) =>
               {
                   clickButton.Text = string.Format("{0} clicks!", count++);
               };
-
         }
+
+        /// <summary>Change main_compat_menu.</summary>
+        /// <param name="menu">Menu object to change.</param>
+        /// <returns>???</returns>
+        /// <remarks>Code copied from menu.xml comment.</remarks>
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.menu, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+
+        /// <summary>Called when the user selects one of the app bar items.</summary>
+        /// <param name="item">Object to indicate which item was clicked.</param>
+        /// <returns>???</returns>
+        /// <remarks>Code copied from menu.xml comment.</remarks>
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.action_item1:
+                    Toast.MakeText(this, "You pressed item1 action!", ToastLength.Short).Show();
+                    break;
+                case Resource.Id.action_item2:
+                    Toast.MakeText(this, "You pressed item2 action!", ToastLength.Short).Show();
+                    break;
+            }
+            return base.OnOptionsItemSelected(item);
+        }
+
     }
 }
 
