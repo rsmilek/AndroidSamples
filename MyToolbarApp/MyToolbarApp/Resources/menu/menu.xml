@@ -9,11 +9,21 @@
   If you set app:showAsAction="ifRoom" (as in the example code's favorite action), the action is displayed as a button if there is room in the app bar for it;
   if there is not enough room, excess actions are sent to the overflow menu. 
   If you set app:showAsAction="never" (as in the example code's settings action), the action is always listed in the overflow menu, not displayed in the app bar  -->
+
+  <!-- WARNING: There is an error in generated template '@android:drawable/xxx', right is @drawable/xxx -->
   
+  <!-- Menu item 'Settins' as action icon button -->
+  <item android:id="@+id/action_settings"
+         android:title="Settings"
+         android:icon="@drawable/settings"
+         app:showAsAction="ifRoom|withText"/>
+
+  <!-- Menu item 'Item1' as overlay menu under three dot button -->
   <item android:id="@+id/action_item1"
 	      android:title="Item1"
 	      app:showAsAction="never"/>
 
+  <!-- Menu item 'Item2' as overlay menu under three dot button -->
   <item android:id="@+id/action_item2"
          android:title="Item2"
          app:showAsAction="never"/>
@@ -21,17 +31,6 @@
 </menu>
 
 <!-- Code to implement into Activity:
-
-
-  <item android:id="@+id/action_edit"
-	      android:title="Edit"
-	      android:icon="@android:drawable/ic_menu_edit"
-	      app:showAsAction="ifRoom"/>
-
-  <item android:id="@+id/action_save"
-         android:title="Save"
-         android:icon="@android:drawable/ic_menu_save"
-         app:showAsAction="ifRoom|withText"/>
 
 
 public override bool OnCreateOptionsMenu(IMenu menu)

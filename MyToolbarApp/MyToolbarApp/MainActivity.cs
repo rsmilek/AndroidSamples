@@ -51,7 +51,7 @@ namespace MyToolbarApp
 
         /// <summary>Change main_compat_menu.</summary>
         /// <param name="menu">Menu object to change.</param>
-        /// <returns>???</returns>
+        /// <returns>See Google's docu.</returns>
         /// <remarks>Code copied from menu.xml comment.</remarks>
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
@@ -62,17 +62,20 @@ namespace MyToolbarApp
 
         /// <summary>Called when the user selects one of the app bar items.</summary>
         /// <param name="item">Object to indicate which item was clicked.</param>
-        /// <returns>???</returns>
+        /// <returns>See Google's docu.</returns>
         /// <remarks>Code copied from menu.xml comment.</remarks>
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
             {
+                case Resource.Id.action_settings:
+                    Toast.MakeText(this, "You pressed 'Settings' action!", ToastLength.Short).Show();
+                    break;
                 case Resource.Id.action_item1:
-                    Toast.MakeText(this, "You pressed item1 action!", ToastLength.Short).Show();
+                    Toast.MakeText(this, "You pressed 'Item1' action!", ToastLength.Short).Show();
                     break;
                 case Resource.Id.action_item2:
-                    Toast.MakeText(this, "You pressed item2 action!", ToastLength.Short).Show();
+                    Toast.MakeText(this, "You pressed 'Item2' action!", ToastLength.Short).Show();
                     break;
             }
             return base.OnOptionsItemSelected(item);

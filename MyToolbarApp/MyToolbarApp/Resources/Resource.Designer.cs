@@ -1696,17 +1696,20 @@ namespace MyToolbarApp
 			// aapt resource value: 0x7f02005b
 			public const int notification_icon_background = 2130837595;
 			
-			// aapt resource value: 0x7f02005e
-			public const int notification_template_icon_bg = 2130837598;
-			
 			// aapt resource value: 0x7f02005f
-			public const int notification_template_icon_low_bg = 2130837599;
+			public const int notification_template_icon_bg = 2130837599;
+			
+			// aapt resource value: 0x7f020060
+			public const int notification_template_icon_low_bg = 2130837600;
 			
 			// aapt resource value: 0x7f02005c
 			public const int notification_tile_bg = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
 			public const int notify_panel_notification_icon_bg = 2130837597;
+			
+			// aapt resource value: 0x7f02005e
+			public const int settings = 2130837598;
 			
 			static Drawable()
 			{
@@ -1757,11 +1760,11 @@ namespace MyToolbarApp
 			// aapt resource value: 0x7f0a005a
 			public const int action_image = 2131361882;
 			
-			// aapt resource value: 0x7f0a0070
-			public const int action_item1 = 2131361904;
-			
 			// aapt resource value: 0x7f0a0071
-			public const int action_item2 = 2131361905;
+			public const int action_item1 = 2131361905;
+			
+			// aapt resource value: 0x7f0a0072
+			public const int action_item2 = 2131361906;
 			
 			// aapt resource value: 0x7f0a0002
 			public const int action_menu_divider = 2131361794;
@@ -1777,6 +1780,9 @@ namespace MyToolbarApp
 			
 			// aapt resource value: 0x7f0a0026
 			public const int action_mode_close_button = 2131361830;
+			
+			// aapt resource value: 0x7f0a0070
+			public const int action_settings = 2131361904;
 			
 			// aapt resource value: 0x7f0a005b
 			public const int action_text = 2131361883;
