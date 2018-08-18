@@ -16,7 +16,7 @@ using Android.Support.V7.App;
 ///   In the activity's onCreate() method, call the activity's setSupportActionBar() method, and pass the activity's toolbar.
 /// - To handle Toolbar's actions you have to add xml menu resource menu.xml, see comments how to handle actions.
 ///   Note: Use 'Menu Compat' from available 'New item' of VS.
-/// - Additoinally added handling of material menu inspired by https://www.youtube.com/watch?v=DRjz0uC8PCY, see SettingsActivity.cs for details.
+/// - Additoinally added handling of material menu inspired by https://developer.xamarin.com/samples/monodroid/Supportv7/AppCompat/Toolbar/, see SettingsActivity.cs for details.
 /// </summary>
 
 namespace MyToolbarApp
