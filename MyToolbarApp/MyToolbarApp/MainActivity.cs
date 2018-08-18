@@ -7,6 +7,14 @@ using Android.Widget;
 using Android.OS;
 using Android.Support.V7.App;
 
+
+/// <summary>
+/// This demo shows how to use widget Toolbar, so app template is generated from XamarinTemplate = SingleViewApp.
+/// See Googles' tutorial https://developer.android.com/training/appbar/ on which is this code snipet inspired with.
+/// - Toolbar is widget which replaces native Actionbar over various Android relaces and its definition is done in toolbar.axml.
+///   To use include it into your own layout, f.g. main.axml. Note: See aplication style definition styles.xml how to Actionbar switch off.
+/// </summary>
+
 namespace MyToolbarApp
 {
     [Activity(Label = "@string/app_name", MainLauncher = true, LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Icon = "@drawable/icon")]

@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
+  
   <style name="Theme.MyTheme" parent="Theme.MyTheme.Base">
   </style>
   <!-- Base theme applied no matter what API -->
@@ -35,4 +36,5 @@
     <!-- Support library compatibility -->
     <item name="elevation">0dp</item>
   </style>
+  
 </resources>

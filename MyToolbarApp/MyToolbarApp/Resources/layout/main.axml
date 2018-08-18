@@ -3,9 +3,11 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+<!-- Includes definition of toolbar -->
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
+<!-- Usage of toolbar: android:layout_below="@id/toolbar-->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
