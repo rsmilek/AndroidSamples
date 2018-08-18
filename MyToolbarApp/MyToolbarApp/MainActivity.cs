@@ -14,8 +14,9 @@ using Android.Support.V7.App;
 /// - Toolbar is widget which replaces native Actionbar over various Android relaces and its definition is done in toolbar.axml.
 ///   To use include it into your own layout, f.g. main.axml. Note: See aplication style definition styles.xml how to Actionbar switch off.
 ///   In the activity's onCreate() method, call the activity's setSupportActionBar() method, and pass the activity's toolbar.
-/// - To add and hancle Toolbar actions you have to add xml menu resource menu.xml, see comments how to handle actions.
-///   Note: Use 'Menu Compat' from available new items.
+/// - To handle Toolbar's actions you have to add xml menu resource menu.xml, see comments how to handle actions.
+///   Note: Use 'Menu Compat' from available 'New item' of VS.
+/// - Additoinally added handling of material menu inspired by https://www.youtube.com/watch?v=DRjz0uC8PCY, see SettingsActivity.cs for details.
 /// </summary>
 
 namespace MyToolbarApp
@@ -23,7 +24,6 @@ namespace MyToolbarApp
     [Activity(Label = "@string/app_name", MainLauncher = true, LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Icon = "@drawable/icon")]
     public class MainActivity : AppCompatActivity
     {
-
         int count = 1;
 
         protected override void OnCreate(Bundle bundle)
@@ -59,7 +59,6 @@ namespace MyToolbarApp
             return base.OnCreateOptionsMenu(menu);
         }
 
-
         /// <summary>Called when the user selects one of the app bar items.</summary>
         /// <param name="item">Object to indicate which item was clicked.</param>
         /// <returns>See Google's docu.</returns>
@@ -69,7 +68,7 @@ namespace MyToolbarApp
             switch (item.ItemId)
             {
                 case Resource.Id.action_settings:
-                    Toast.MakeText(this, "You pressed 'Settings' action!", ToastLength.Short).Show();
+                    StartActivity(new Intent(Application.Context, typeof(SettingsActivity)));
                     break;
                 case Resource.Id.action_item1:
                     Toast.MakeText(this, "You pressed 'Item1' action!", ToastLength.Short).Show();

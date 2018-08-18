@@ -1760,11 +1760,11 @@ namespace MyToolbarApp
 			// aapt resource value: 0x7f0a005a
 			public const int action_image = 2131361882;
 			
-			// aapt resource value: 0x7f0a0071
-			public const int action_item1 = 2131361905;
-			
 			// aapt resource value: 0x7f0a0072
-			public const int action_item2 = 2131361906;
+			public const int action_item1 = 2131361906;
+			
+			// aapt resource value: 0x7f0a0073
+			public const int action_item2 = 2131361907;
 			
 			// aapt resource value: 0x7f0a0002
 			public const int action_menu_divider = 2131361794;
@@ -1781,8 +1781,8 @@ namespace MyToolbarApp
 			// aapt resource value: 0x7f0a0026
 			public const int action_mode_close_button = 2131361830;
 			
-			// aapt resource value: 0x7f0a0070
-			public const int action_settings = 2131361904;
+			// aapt resource value: 0x7f0a0071
+			public const int action_settings = 2131361905;
 			
 			// aapt resource value: 0x7f0a005b
 			public const int action_text = 2131361883;
@@ -2057,6 +2057,9 @@ namespace MyToolbarApp
 			// aapt resource value: 0x7f0a0039
 			public const int topPanel = 2131361849;
 			
+			// aapt resource value: 0x7f0a0070
+			public const int tvSettings = 2131361904;
+			
 			// aapt resource value: 0x7f0a0008
 			public const int up = 2131361800;
 			
@@ -2249,10 +2252,13 @@ namespace MyToolbarApp
 			public const int select_dialog_singlechoice_material = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int support_simple_spinner_dropdown_item = 2130903086;
+			public const int settings = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int toolbar = 2130903087;
+			public const int support_simple_spinner_dropdown_item = 2130903087;
+			
+			// aapt resource value: 0x7f030030
+			public const int toolbar = 2130903088;
 			
 			static Layout()
 			{
@@ -2376,14 +2382,17 @@ namespace MyToolbarApp
 			// aapt resource value: 0x7f050012
 			public const int abc_toolbar_collapse_description = 2131034130;
 			
-			// aapt resource value: 0x7f050022
-			public const int app_name = 2131034146;
-			
 			// aapt resource value: 0x7f050021
-			public const int hello = 2131034145;
+			public const int app_name = 2131034145;
+			
+			// aapt resource value: 0x7f050022
+			public const int hello = 2131034146;
 			
 			// aapt resource value: 0x7f050013
 			public const int search_menu_title = 2131034131;
+			
+			// aapt resource value: 0x7f050023
+			public const int settings = 2131034147;
 			
 			// aapt resource value: 0x7f050014
 			public const int status_bar_notification_info_overflow = 2131034132;
