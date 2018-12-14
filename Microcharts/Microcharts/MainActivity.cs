@@ -25,25 +25,25 @@ namespace Microcharts
                 {
                     Label = "January",
                     ValueLabel = "200",
-                    Color = SkiaSharp.SKColor.Parse("#266489")
+                    Color = SkiaSharp.SKColor.Parse("#2c3e50")
                 },
                 new Microcharts.Entry(400)
                 {
                     Label = "February",
                     ValueLabel = "400",
-                    Color = SkiaSharp.SKColor.Parse("#68B9C0")
+                    Color = SkiaSharp.SKColor.Parse("#77d065")
                 },
                 new Microcharts.Entry(-100)
                 {
                     Label = "March",
                     ValueLabel = "-100",
-                    Color = SkiaSharp.SKColor.Parse("#90D585")
+                    Color = SkiaSharp.SKColor.Parse("#b455b6")
                 },
                 new Microcharts.Entry(150)
                 {
                     Label = "April",
                     ValueLabel = "150",
-                    Color = SkiaSharp.SKColor.Parse("#90D585")
+                    Color = SkiaSharp.SKColor.Parse("#3498db")
                 }
             };
 
@@ -54,18 +54,40 @@ namespace Microcharts
             //var chart = new RadialGaugeChart() { Entries = entries };
             //var chart = new RadarChart() { Entries = entries };
 
-            var chart = new LineChart()
+            var barChart = new BarChart()
+            {
+                Entries = entries,
+                LabelTextSize = 36
+            };
+
+            var lineChart = new LineChart()
             {
                 Entries = entries,
                 LineMode = LineMode.Straight,
                 LineSize = 8,
                 PointMode = PointMode.Square,
                 PointSize = 18,
-                BackgroundColor = SkiaSharp.SKColor.Parse("#FFFFFF")
+                LabelTextSize = 36
             };
 
-            var chartView = FindViewById<Microcharts.Droid.ChartView>(Resource.Id.chartView);
-            chartView.Chart = chart;
+            var lineChart2 = new LineChart()
+            {
+                Entries = entries,
+                LineMode = LineMode.Spline,
+                LineSize = 8,
+                PointMode = PointMode.Circle,
+                PointSize = 18,
+                LabelTextSize = 36
+            };
+
+            var chartViewBar = FindViewById<Microcharts.Droid.ChartView>(Resource.Id.chartViewBar);
+            chartViewBar.Chart = barChart;
+
+            var chartViewLine = FindViewById<Microcharts.Droid.ChartView>(Resource.Id.chartViewLine);
+            chartViewLine.Chart = lineChart;
+
+            var chartViewLine2 = FindViewById<Microcharts.Droid.ChartView>(Resource.Id.chartViewLine2);
+            chartViewLine2.Chart = lineChart2;
         }
     }
 

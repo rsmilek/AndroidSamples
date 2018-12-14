@@ -9,8 +9,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <microcharts.droid.ChartView
-            android:id="@+id/chartView"
+            android:id="@+id/chartViewBar"
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="260dp" />
+        <microcharts.droid.ChartView
+            android:id="@+id/chartViewLine"
+            android:layout_width="match_parent"
+            android:layout_height="260dp" />
+        <microcharts.droid.ChartView
+            android:id="@+id/chartViewLine2"
+            android:layout_width="match_parent"
+            android:layout_height="260dp" />
     </LinearLayout>
 </ScrollView>
