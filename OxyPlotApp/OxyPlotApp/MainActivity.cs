@@ -69,31 +69,31 @@ namespace OxyPlotApp
         {
             var model = new PlotModel
             {
-                Title = "Bar Chart Demo",
+                Title = "Column Chart Demo",
                 LegendPlacement = LegendPlacement.Outside,
                 LegendPosition = LegendPosition.BottomCenter,
                 LegendOrientation = LegendOrientation.Horizontal,
                 LegendBorderThickness = 0
             };
 
-            var valueAxis = new LinearAxis { Position = AxisPosition.Bottom, MinimumPadding = 0, MaximumPadding = 0.06, AbsoluteMinimum = 0 };
-
-            var categoryAxis = new CategoryAxis { Position = AxisPosition.Left };
+            var categoryAxis = new CategoryAxis { Position = AxisPosition.Bottom, IsZoomEnabled = false, IsPanEnabled = false };
             categoryAxis.Labels.Add("Category A");
             categoryAxis.Labels.Add("Category B");
             categoryAxis.Labels.Add("Category C");
             categoryAxis.Labels.Add("Category D");
 
+            var valueAxis = new LinearAxis { Position = AxisPosition.Left, MinimumPadding = 0, MaximumPadding = 0.06, AbsoluteMinimum = 0, IsZoomEnabled = false, IsPanEnabled = false };
+
             model.Axes.Add(categoryAxis);
             model.Axes.Add(valueAxis);
 
-            var barSeries = new BarSeries { Title = "Series 1", StrokeColor = OxyColors.Black, StrokeThickness = 1 };
-            barSeries.Items.Add(new BarItem { Value = 25 });
-            barSeries.Items.Add(new BarItem { Value = 137 });
-            barSeries.Items.Add(new BarItem { Value = 18 });
-            barSeries.Items.Add(new BarItem { Value = 40 });
+            var columnSeries = new ColumnSeries { Title = "Series 1", StrokeColor = OxyColors.Black, StrokeThickness = 0 };
+            columnSeries.Items.Add(new ColumnItem { Value = 25 });
+            columnSeries.Items.Add(new ColumnItem { Value = 137 });
+            columnSeries.Items.Add(new ColumnItem { Value = 18 });
+            columnSeries.Items.Add(new ColumnItem { Value = 40 });
 
-            model.Series.Add(barSeries);
+            model.Series.Add(columnSeries);
 
             return model;
         }
@@ -103,8 +103,8 @@ namespace OxyPlotApp
         {
             var model = new PlotModel
             {
-                Title = "BarSeries",
-                LegendPlacement = LegendPlacement.Outside,
+                Title = "Bar Chart Demo",
+                LegendPlacement = LegendPlacement.Inside,
                 LegendPosition = LegendPosition.BottomCenter,
                 LegendOrientation = LegendOrientation.Horizontal,
                 LegendBorderThickness = 0
