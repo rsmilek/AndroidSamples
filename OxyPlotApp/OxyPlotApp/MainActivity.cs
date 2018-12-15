@@ -18,6 +18,7 @@ namespace OxyPlotApp
     [Activity(Label = "@string/app_name", MainLauncher = true, LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Icon = "@drawable/icon")]
     public class MainActivity : AppCompatActivity
     {
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -28,16 +29,20 @@ namespace OxyPlotApp
             var viewLine = FindViewById<PlotView>(Resource.Id.plot_view_line);
             viewLine.Model = CreatePlotModel();
 
-            //var viewBar = FindViewById<PlotView>(Resource.Id.plot_view_bar);
-            //viewBar.Model = CreateBarModel();
+            var viewBar = FindViewById<PlotView>(Resource.Id.plot_view_bar);
+            viewBar.Model = CreateBarModel();
+
+            var viewBar2 = FindViewById<PlotView>(Resource.Id.plot_view_bar2);
+            viewBar2.Model = CreateBar2Model();
         }
+
 
         private PlotModel CreatePlotModel()
         {
             var plotModel = new PlotModel { Title = "Line Chart Demo" };
 
             plotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom });
-            plotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Maximum = 10, Minimum = 0 });
+            plotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = 0, Maximum = 10 });
 
             var series1 = new LineSeries
             {
@@ -59,53 +64,80 @@ namespace OxyPlotApp
             return plotModel;
         }
 
-        //private PlotModel CreateBarModel()
-        //{
-        //    var model = new PlotModel { Title = "Bar Chart Demo" };
 
-        //    return model;
+        private PlotModel CreateBarModel()
+        {
+            var model = new PlotModel
+            {
+                Title = "Bar Chart Demo",
+                LegendPlacement = LegendPlacement.Outside,
+                LegendPosition = LegendPosition.BottomCenter,
+                LegendOrientation = LegendOrientation.Horizontal,
+                LegendBorderThickness = 0
+            };
 
-        //    //generate a random percentage distribution between the 5
-        //    //cake-types (see axis below)
-        //    var rand = new Random();
-        //    double[] cakePopularity = new double[5];
-        //    double sum = 0.0;
-        //    for (int i = 0; i < 5; ++i)
-        //    {
-        //        cakePopularity[i] = rand.NextDouble();
-        //        sum += cakePopularity[i];
-        //    }
+            var barSeries = new BarSeries { Title = "Series 1", StrokeColor = OxyColors.Black, StrokeThickness = 1 };
+            barSeries.Items.Add(new BarItem { Value = 25 });
+            barSeries.Items.Add(new BarItem { Value = 137 });
+            barSeries.Items.Add(new BarItem { Value = 18 });
+            barSeries.Items.Add(new BarItem { Value = 40 });
 
-        //    var barSeries = new BarSeries
-        //    {
-        //        ItemsSource = new List<BarItem>(new[] {
-        //        new BarItem{ Value = (cakePopularity[0] / sum * 100) },
-        //        new BarItem{ Value = (cakePopularity[1] / sum * 100) },
-        //        new BarItem{ Value = (cakePopularity[2] / sum * 100) },
-        //        new BarItem{ Value = (cakePopularity[3] / sum * 100) },
-        //        new BarItem{ Value = (cakePopularity[4] / sum * 100) }
-        //        }),
-        //        LabelPlacement = LabelPlacement.Inside,
-        //        LabelFormatString = "{0:.00}%"
-        //    };
-        //    model.Series.Add(barSeries);
+            var categoryAxis = new CategoryAxis { Position = AxisPosition.Left };
+            categoryAxis.Labels.Add("Category A");
+            categoryAxis.Labels.Add("Category B");
+            categoryAxis.Labels.Add("Category C");
+            categoryAxis.Labels.Add("Category D");
 
-        //    model.Axes.Add(new CategoryAxis
-        //    {
-        //            Position = AxisPosition.Left,
-        //            Key = "CakeAxis",
-        //            ItemsSource = new[]
-        //                {
-        //                    "Apple cake",
-        //                    "Baumkuchen",
-        //                    "Bundt Cake",
-        //                    "Chocolate cake",
-        //                    "Carrot cake"
-        //                }
-        //    });
+            var valueAxis = new LinearAxis { Position = AxisPosition.Bottom, MinimumPadding = 0, MaximumPadding = 0.06, AbsoluteMinimum = 0 };
 
-        //    return model;
-        //}
+            model.Series.Add(barSeries);
+
+            model.Axes.Add(categoryAxis);
+            model.Axes.Add(valueAxis);
+
+            return model;
+        }
+
+
+        private PlotModel CreateBar2Model()
+        {
+            var model = new PlotModel
+            {
+                Title = "BarSeries",
+                LegendPlacement = LegendPlacement.Outside,
+                LegendPosition = LegendPosition.BottomCenter,
+                LegendOrientation = LegendOrientation.Horizontal,
+                LegendBorderThickness = 0
+            };
+
+            var s1 = new BarSeries { Title = "Series 1", StrokeColor = OxyColors.Black, StrokeThickness = 1 };
+            s1.Items.Add(new BarItem { Value = 25 });
+            s1.Items.Add(new BarItem { Value = 137 });
+            s1.Items.Add(new BarItem { Value = 18 });
+            s1.Items.Add(new BarItem { Value = 40 });
+
+            var s2 = new BarSeries { Title = "Series 2", StrokeColor = OxyColors.Black, StrokeThickness = 1 };
+            s2.Items.Add(new BarItem { Value = 12 });
+            s2.Items.Add(new BarItem { Value = 14 });
+            s2.Items.Add(new BarItem { Value = 120 });
+            s2.Items.Add(new BarItem { Value = 26 });
+
+            var categoryAxis = new CategoryAxis { Position = AxisPosition.Left };
+            categoryAxis.Labels.Add("Category A");
+            categoryAxis.Labels.Add("Category B");
+            categoryAxis.Labels.Add("Category C");
+            categoryAxis.Labels.Add("Category D");
+
+            var valueAxis = new LinearAxis { Position = AxisPosition.Bottom, MinimumPadding = 0, MaximumPadding = 0.06, AbsoluteMinimum = 0 };
+
+            model.Series.Add(s1);
+            model.Series.Add(s2);
+
+            model.Axes.Add(categoryAxis);
+            model.Axes.Add(valueAxis);
+
+            return model;
+        }
     }
 }
 

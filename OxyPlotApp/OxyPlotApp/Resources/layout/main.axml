@@ -5,17 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 	<LinearLayout
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent">
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 		<OxyPlot.Xamarin.Android.PlotView
 			android:id="@+id/plot_view_line"
 			android:layout_width="match_parent"
 			android:layout_height="240dp" />
-		<!--
 		<OxyPlot.Xamarin.Android.PlotView
 			android:id="@+id/plot_view_bar"
 			android:layout_width="match_parent"
 			android:layout_height="240dp" />
-		-->
+		<OxyPlot.Xamarin.Android.PlotView
+			android:id="@+id/plot_view_bar2"
+			android:layout_width="match_parent"
+			android:layout_height="240dp" />
 	</LinearLayout>
 </ScrollView>
