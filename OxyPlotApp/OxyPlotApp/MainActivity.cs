@@ -27,7 +27,7 @@ namespace OxyPlotApp
             SetContentView(Resource.Layout.main);
 
             var viewLine = FindViewById<PlotView>(Resource.Id.plot_view_line);
-            viewLine.Model = CreatePlotModel();
+            viewLine.Model = CreatePlotLineModel();
 
             var viewBar = FindViewById<PlotView>(Resource.Id.plot_view_bar);
             viewBar.Model = CreateBarModel();
@@ -37,7 +37,7 @@ namespace OxyPlotApp
         }
 
 
-        private PlotModel CreatePlotModel()
+        private PlotModel CreatePlotLineModel()
         {
             var plotModel = new PlotModel { Title = "Line Chart Demo" };
 
