@@ -26,6 +26,9 @@ namespace OxyPlotApp
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.main);
 
+            var viewTime = FindViewById<PlotView>(Resource.Id.plot_view_time);
+            viewTime.Model = CreatePlotTimeModel();
+
             var viewLine = FindViewById<PlotView>(Resource.Id.plot_view_line);
             viewLine.Model = CreatePlotLineModel();
 
@@ -34,6 +37,72 @@ namespace OxyPlotApp
 
             var viewBar2 = FindViewById<PlotView>(Resource.Id.plot_view_bar2);
             viewBar2.Model = CreateBar2Model();
+        }
+
+
+        private PlotModel CreatePlotTimeModel()
+        {
+            var model = new PlotModel { Title = "Time Axes Chart Demo" };
+
+            model.Axes.Add(new LinearAxis()
+            {
+                MajorGridlineStyle = LineStyle.Solid,
+                MinorGridlineStyle = LineStyle.None,
+
+                MajorStep = 200.0,
+                MinorStep = 50.0,
+
+                Unit = "W"
+            });
+
+            model.Axes.Add(new DateTimeAxis()
+            {
+                Position = AxisPosition.Bottom,
+                StringFormat = "HH:mm",
+
+                //IntervalType = DateTimeIntervalType.Hours,
+                //MinorIntervalType = DateTimeIntervalType.Minutes,
+
+
+                //IntervalLength = DateTimeAxis.ToDouble(DateTime.Parse("12:00:00")),
+                //IntervalLength = 12,
+
+
+                //MajorGridlineThickness = DateTimeAxis.ToDouble(DateTime.Parse("00:30:00")),
+
+
+                //MajorStep = DateTimeAxis.ToDouble(DateTime.Parse("02:00:00")),
+                //MajorStep = 0.08,
+                ////MajorStep = 0.25,
+                //MinorStep = DateTimeAxis.ToDouble(DateTime.Parse("00:30:00")),
+                //MinorStep = 0.25,
+
+                Minimum = DateTimeAxis.ToDouble(DateTime.Parse("00:00:00")),
+                Maximum = DateTimeAxis.ToDouble(DateTime.Parse("23:59:59")),
+
+                MajorGridlineStyle = LineStyle.Solid,
+                MinorGridlineStyle = LineStyle.None,
+
+                //PositionAtZeroCrossing = false,
+
+                IsZoomEnabled = false,
+                IsPanEnabled = false,
+
+                Unit = "Hours"
+            });
+
+            var cs = new LineSeries();
+            for (int i = 0; i < 24; i++) //generate test values
+            {
+                string timeStr = Convert.ToString(i) + ":00:00";
+                DateTime time = DateTime.Parse(timeStr);
+                var dp = new DataPoint(DateTimeAxis.ToDouble(time), i * i);
+                cs.Points.Add(dp);
+            }
+
+            model.Series.Add(cs);
+
+            return model;
         }
 
 

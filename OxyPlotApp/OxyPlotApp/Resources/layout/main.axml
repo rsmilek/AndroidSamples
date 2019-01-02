@@ -9,6 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 		<OxyPlot.Xamarin.Android.PlotView
+			android:id="@+id/plot_view_time"
+			android:layout_width="match_parent"
+			android:layout_height="240dp" />
+		<OxyPlot.Xamarin.Android.PlotView
 			android:id="@+id/plot_view_line"
 			android:layout_width="match_parent"
 			android:layout_height="240dp" />
