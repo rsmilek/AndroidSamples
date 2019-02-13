@@ -23,7 +23,9 @@ namespace MqttNetApp
     {
         static void Main(string[] args)
         {
+            var timeMeas = new TimeMeas();
             var mqttClient = new MqttFactory().CreateMqttClient();
+
 
             // Create TCP based options using the builder.
             var options = new MqttClientOptionsBuilder()
@@ -31,7 +33,7 @@ namespace MqttNetApp
                 .WithTcpServer("89.203.252.106")
                 .WithCredentials("rsm", "pecnamspadla")
                 //.WithTls()
-                //.WithCleanSession()
+                .WithCleanSession()
                 .Build();
 
 
@@ -42,6 +44,10 @@ namespace MqttNetApp
                 Console.WriteLine($"+ Payload = {Encoding.UTF8.GetString(e.ApplicationMessage.Payload)}");
                 Console.WriteLine($"+ QoS = {e.ApplicationMessage.QualityOfServiceLevel}");
                 Console.WriteLine($"+ Retain = {e.ApplicationMessage.Retain}");
+
+                timeMeas.Stop();
+                Console.WriteLine("{0} = Time from publish to receive", timeMeas.DiffSecondsStr);
+
                 Console.WriteLine();
             };
 
@@ -52,7 +58,9 @@ namespace MqttNetApp
 
                 await mqttClient.SubscribeAsync(new List<TopicFilter>
                 {
-                    new TopicFilter("#", MqttQualityOfServiceLevel.AtMostOnce)
+                    //new TopicFilter("#", MqttQualityOfServiceLevel.AtMostOnce)
+
+                    new TopicFilter("pokus/#", MqttQualityOfServiceLevel.ExactlyOnce)
                 });
 
                 Console.WriteLine("### SUBSCRIBED ###");
@@ -85,15 +93,20 @@ namespace MqttNetApp
             }
 
             Console.WriteLine("### WAITING FOR APPLICATION MESSAGES ###");
+            Console.WriteLine("### Press key 'q/Q' to terminate, other key publishes test message ###");
 
 
             while (true)
             {
-                Console.ReadLine();
+                while (Console.ReadKey(true).Key == ConsoleKey.Q)
+                    { Environment.Exit(0); };
+
+                timeMeas.Start();
 
                 var message = new MqttApplicationMessageBuilder()
                     .WithTopic("pokus/1")
                     .WithPayload("Hello from RSm")
+                    .WithExactlyOnceQoS()
                     .Build();
 
                 mqttClient.PublishAsync(message);
